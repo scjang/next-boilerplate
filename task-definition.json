@@ -1,6 +1,6 @@
 {
   "ipcMode": null,
-  "executionRoleArn": "arn:aws:iam::678239259490:role/ecsTaskExecutionRole",
+  "executionRoleArn": "aws iam role",
   "containerDefinitions": [
     {
       "dnsSearchDomains": null,
@@ -28,11 +28,11 @@
       "environment": [
         {
           "name": "API_SERVER",
-          "value": "https://gateway-stage.seoulstore.com"
+          "value": "https://something-url"
         },
         {
           "name": "LAMBDA_SERVER",
-          "value": "https://seongnam.seoulstore.com"
+          "value": "https://something-url"
         },
         {
           "name": "NODE_ENV",
@@ -40,11 +40,11 @@
         },
         {
           "name": "SEOKCHON_SERVER",
-          "value": "https://seokchon-stage.seoulstore.com"
+          "value": "https://something-url"
         },
         {
           "name": "SINSA_SERVER",
-          "value": "https://sinsa-stage.seoulstore.com"
+          "value": "https://something-url"
         }
       ],
       "resourceRequirements": null,
@@ -58,7 +58,7 @@
       "memoryReservation": null,
       "volumesFrom": [],
       "stopTimeout": null,
-      "image": "678239259490.dkr.ecr.ap-northeast-2.amazonaws.com/next-boilerplate",
+      "image": "aws-ecr-url/next-boilerplate",
       "startTimeout": null,
       "firelensConfiguration": null,
       "dependsOn": null,
@@ -80,12 +80,12 @@
   ],
   "placementConstraints": [],
   "memory": "512",
-  "taskRoleArn": "arn:aws:iam::678239259490:role/ecsTaskExecutionRole",
+  "taskRoleArn": "aws iam role",
   "compatibilities": [
     "EC2",
     "FARGATE"
   ],
-  "taskDefinitionArn": "arn:aws:ecs:ap-northeast-2:678239259490:task-definition/next-boilerplate:2",
+  "taskDefinitionArn": "aws task definition",
   "family": "next-boilerplate",
   "requiresAttributes": [
     {

@@ -36,12 +36,8 @@ const bodyBuilder = (params: string[], body: { [key: string]: string }) => {
   return body
 }
 
-const hasMatchString = (original: string, comparable: string) => original.includes(comparable)
-
 const getApiOptions = (config: ApiConfig) => {
   const { key, data: rawData, cookie } = config
-
-  const gatewayUrl = `${process.env.API_SERVER}/admin`
 
   // eslint-disable-next-line global-require
   const apiMap = require('./map')
@@ -56,24 +52,10 @@ const getApiOptions = (config: ApiConfig) => {
 
   const body = bodyBuilder(params, data)
 
-  const isGateway = hasMatchString(requestUrl, gatewayUrl)
-
-  const headers = {
-    ...(!isGateway
-      ? {
-          Authorization: `Basic ${Buffer.from('seoulstore:devteam!').toString('base64')}`,
-          'D-Authorization': 'bXlnb29kczpjanJjanJxa3I0ZHlkZ25sV2tk',
-        }
-      : {
-          'SEOULSTORE-Authorization': `${Buffer.from('seoulstore:devteam!').toString('base64')}`,
-          Authorization: `Bearer ${cookie}`,
-        }),
-  }
-
   return {
     url: requestUrl,
     method: method as Method,
-    headers,
+
     ...(method.toLowerCase() === 'get' ? { params: body } : { data: body }),
     validateStatus: (status: number) => status >= 200 && status < 400,
   }
