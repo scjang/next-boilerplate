@@ -1,5 +1,5 @@
 import { Combine } from '@types'
-import axios from 'axios'
+import axios, { AxiosError, AxiosRequestConfig } from 'axios'
 import { NextFunction, Response, Request } from 'express'
 
 import { MapKey } from './map'
@@ -14,13 +14,19 @@ interface BaseReq {
 
 type CombineRequest = Combine<BaseReq, Request>
 
-const callApi = async <T>(options: T) => {
+const callApi = async (options: AxiosRequestConfig) => {
   try {
     const { data } = await axios(options)
 
     return data.data || data
-  } catch (error) {
-    throw error.response.data
+  } catch (error: AxiosError | unknown) {
+    const { isAxiosError } = axios
+
+    if (isAxiosError(error)) {
+      throw error.response?.data
+    }
+
+    throw error
   }
 }
 
@@ -43,7 +49,7 @@ export const api = (config: ApiConfig) => {
 }
 
 export const proxy = async (req: Request, res: Response, next: NextFunction) => {
-  const request = (req as unknown) as CombineRequest
+  const request = req as unknown as CombineRequest
 
   const {
     params: { key },
@@ -62,11 +68,15 @@ export const proxy = async (req: Request, res: Response, next: NextFunction) => 
   try {
     const { status, data } = await axios(options)
 
-    // todo: Modify this condition to suit project
+    // todo: have to modify this condition to fit your project
     if (options.url.includes('/auth/admin')) setAccessTokenIntoCookie(res, data.data.accessToken)
 
     res.status(status).json(data.data || data)
-  } catch (error) {
-    next(error.response)
+  } catch (error: AxiosError | unknown) {
+    const { isAxiosError } = axios
+
+    if (isAxiosError(error)) return next(error.response?.data)
+
+    next(error)
   }
 }

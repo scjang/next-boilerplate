@@ -55,7 +55,6 @@ const getApiOptions = (config: ApiConfig) => {
   return {
     url: requestUrl,
     method: method as Method,
-
     ...(method.toLowerCase() === 'get' ? { params: body } : { data: body }),
     validateStatus: (status: number) => status >= 200 && status < 400,
   }
@@ -63,7 +62,7 @@ const getApiOptions = (config: ApiConfig) => {
 
 const getProxyApiOptions = (config: ApiConfig) => {
   return {
-    method: 'post',
+    method: 'post' as Method,
     url: `/api/${config.key}`,
     data: config.data,
     validateStatus: (status: number) => status >= 200 && status < 400,

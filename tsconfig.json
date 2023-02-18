@@ -40,7 +40,8 @@
       "~hooks/*": [
         "hooks/*"
       ]
-    }
+    },
+    "incremental": true
   },
   "include": [
     "next-env.d.ts",

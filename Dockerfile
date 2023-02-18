@@ -1,4 +1,4 @@
-FROM node:14.17.0-alpine
+FROM node:16.8-alpine
 
 ENV HOME=/home/app
 ENV APP_DIR=$HOME

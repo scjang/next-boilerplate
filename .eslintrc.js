@@ -18,7 +18,7 @@ module.exports = {
     node: true,
     es6: true,
   },
-  plugins: ['@typescript-eslint', 'react'],
+  plugins: ['@typescript-eslint', 'react', 'import'],
   rules: {
     'react/prop-types': 'off',
     'react/jsx-props-no-spreading': 'off',
@@ -33,6 +33,15 @@ module.exports = {
     'jsx-a11y/anchor-is-valid': 'off',
     'no-alert': 'off',
     'no-underscore-dangle': 'off',
+    // 'import/no-extraneous-dependencies': [
+    //   'error',
+    //   {
+    //     devDependencies: false,
+    //     optionalDependencies: false,
+    //     peerDependencies: false,
+    //     bundledDependencies: false,
+    //   },
+    // ],
     'import/order': [
       'error',
       {
