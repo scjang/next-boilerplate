@@ -33,15 +33,14 @@ module.exports = {
     'jsx-a11y/anchor-is-valid': 'off',
     'no-alert': 'off',
     'no-underscore-dangle': 'off',
-    // 'import/no-extraneous-dependencies': [
-    //   'error',
-    //   {
-    //     devDependencies: false,
-    //     optionalDependencies: false,
-    //     peerDependencies: false,
-    //     bundledDependencies: false,
-    //   },
-    // ],
+    'import/no-extraneous-dependencies': [
+      'error',
+      {
+        optionalDependencies: false,
+        peerDependencies: false,
+        bundledDependencies: false,
+      },
+    ],
     'import/order': [
       'error',
       {
