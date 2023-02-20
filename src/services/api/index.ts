@@ -54,13 +54,13 @@ export const proxy = async (req: Request, res: Response, next: NextFunction) => 
   const {
     params: { key },
     body,
-    cookies: { at: cookie },
+    // cookies: { at: cookie },
   } = request
 
   const options = getApiOptions({
     key,
     data: body,
-    cookie,
+    // cookie,
   })
 
   console.log('Called from the proxy', options)

@@ -1,25 +1,34 @@
-import { useEffect, useState } from 'react'
+// import { useEffect, useState } from 'react'
+
+import { useQuery } from '@tanstack/react-query'
+import { createSelector } from 'reselect'
+
+import { ResponseError } from '../../../../@types'
+import { ProductItem } from '../../../../@types/product'
 
 import { api } from '~services/api'
 
-const getProduct = () => api({ key: 'getProduct', data: { id: 1278016 } })
-
-export const useGetProduct = () => {
-  const [productName, setProductName] = useState('')
-
-  useEffect(() => {
-    const asyncWrapper = async () => getProduct()
-
-    asyncWrapper().then((res) => {
-      const {
-        descriptions: { name },
-      } = res
-
-      setProductName(name)
-    })
-  }, [])
-
-  return { productName, setProductName }
+type ProductProps = {
+  id: number
 }
 
-export default getProduct
+export const getProduct = (data: ProductProps) => api({ key: 'getProduct', data })
+
+export const useGetProduct = (data: ProductProps) => {
+  const { id } = data
+
+  return useQuery<ProductItem, ResponseError>([`product/${id}`], () => getProduct(data))
+}
+
+const selectProduct = createSelector(
+  (state: ProductItem | undefined) => state,
+  (state) => ({
+    id: state?.id,
+    attributes: state?.attributes,
+  })
+)
+
+export const useGetProductSelector = (data: ProductProps) => {
+  const { data: response } = useGetProduct(data)
+  return selectProduct(response)
+}

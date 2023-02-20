@@ -5,8 +5,12 @@ const apiServer = process.env.API_SERVER
 // const seokchonServer = process.env.SEOKCHON_SERVER
 
 const urlMap = {
+  getProducts: {
+    url: `${apiServer}/products`,
+    method: 'GET',
+  },
   getProduct: {
-    url: `${apiServer}/siteProducts/:id`,
+    url: `${apiServer}/products/:id`,
     method: 'GET',
   },
   getCategories: {

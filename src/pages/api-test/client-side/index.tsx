@@ -1,13 +1,15 @@
 import React from 'react'
 
-import { useGetProduct } from '~hooks/feature/product/api/useGetProduct'
+import { useGetProductSelector } from '~hooks/feature/product/api/useGetProduct'
 
 const clientSide = () => {
-  const { productName } = useGetProduct()
+  const { attributes } = useGetProductSelector({ id: 1 })
+
+  const { name } = attributes ?? {}
 
   return (
     <p>
-      Get product name is <span style={{ fontWeight: 'bold', color: 'blue' }}>{productName}</span>
+      Get product name is <span style={{ fontWeight: 'bold', color: 'blue' }}>{name}</span>
     </p>
   )
 }
