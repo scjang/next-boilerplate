@@ -15,7 +15,7 @@ export const getProduct = (data: ProductProps) => api({ key: 'getProduct', data 
 export const useGetProduct = (data: ProductProps) => {
   const { id } = data
 
-  return useQuery<ProductItem, ResponseError>([`product/${id}`], () => getProduct(data))
+  return useQuery<ProductItem, ResponseError>(['product', id], () => getProduct(data))
 }
 
 const selectProduct = createSelector(
@@ -28,6 +28,7 @@ const selectProduct = createSelector(
 
 const useGetProductSelector = (data: ProductProps) => {
   const { data: response } = useGetProduct(data)
+
   return selectProduct(response)
 }
 

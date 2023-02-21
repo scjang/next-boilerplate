@@ -1,4 +1,4 @@
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { Hydrate, QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { NextPageContext, NextComponentType } from 'next'
 import type { AppProps } from 'next/app'
@@ -35,13 +35,16 @@ const RootApp = ({ Component, pageProps }: AppProps) => {
       </Head>
 
       <QueryClientProvider client={queryClient}>
-        <ReactQueryDevtools initialIsOpen />
-        <ThemeProvider theme={theme}>
-          <Global />
-          <MainTemplate>
-            <Component {...pageProps.props} />
-          </MainTemplate>
-        </ThemeProvider>
+        <Hydrate state={pageProps.dehydratedState}>
+          <ReactQueryDevtools initialIsOpen />
+
+          <ThemeProvider theme={theme}>
+            <Global />
+            <MainTemplate>
+              <Component {...pageProps.props} />
+            </MainTemplate>
+          </ThemeProvider>
+        </Hydrate>
       </QueryClientProvider>
     </>
   )

@@ -1,9 +1,12 @@
+import { useRouter } from 'next/router'
 import React from 'react'
 
 import useGetProductSelector from '~hooks/feature/product/api/useGetProduct'
 
 const clientSide = () => {
-  const { attributes } = useGetProductSelector({ id: 1 })
+  const { query: id } = useRouter()
+
+  const { attributes } = useGetProductSelector({ id: Number(id) || 1 })
 
   const { name } = attributes ?? {}
 
