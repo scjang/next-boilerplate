@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { useGetProductSelector } from '~hooks/feature/product/api/useGetProduct'
+import useGetProductSelector from '~hooks/feature/product/api/useGetProduct'
 
 const clientSide = () => {
   const { attributes } = useGetProductSelector({ id: 1 })

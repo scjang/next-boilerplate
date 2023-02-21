@@ -1,5 +1,3 @@
-// import { useEffect, useState } from 'react'
-
 import { useQuery } from '@tanstack/react-query'
 import { createSelector } from 'reselect'
 
@@ -28,7 +26,9 @@ const selectProduct = createSelector(
   })
 )
 
-export const useGetProductSelector = (data: ProductProps) => {
+const useGetProductSelector = (data: ProductProps) => {
   const { data: response } = useGetProduct(data)
   return selectProduct(response)
 }
+
+export default useGetProductSelector
