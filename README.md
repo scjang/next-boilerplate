@@ -17,12 +17,17 @@ yarn dev
 ```
 node_modules
 src
+├── @types
 ├── components
-├── interfaces
 ├── pages
 ├── server
+│   └── logger
 ├── services
 │   └── api
 ├── theme
+├── hooks
+│   └── typeName
+│     └── api
+│     └── updater
 └── utils
 ```
