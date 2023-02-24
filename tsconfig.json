@@ -41,14 +41,20 @@
         "hooks/*"
       ]
     },
-    "incremental": true
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
   "include": [
     "next-env.d.ts",
     "next.config.js",
     "src/**/*.ts",
     "src/**/*.tsx",
-    ".eslintrc.js"
+    ".eslintrc.js",
+    ".next/types/**/*.ts"
   ],
   "exclude": [
     "node_modules",

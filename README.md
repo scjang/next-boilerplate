@@ -31,3 +31,24 @@ src
 │     └── updater
 └── utils
 ```
+
+## Use Next js 13
+```bash
+## set node version
+nvm use 16.8.0
+
+## change directory name
+mv {project_pages_dir_path}/pages {project_pages_dir_path}/_pages
+mv {project_app_dir_path}/_app {project_app_dir_path}/app
+
+## modify next.config.js
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  ...
+  reactStrictMode: true,
+  experimental: {
+    appDir: true,
+  },
+  ...
+}
+```
