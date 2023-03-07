@@ -13,6 +13,14 @@ const port = 9000
 const ip = '0.0.0.0'
 const router = Router()
 
+router.post('/api/get500Error', (_req: Request, res: Response) => {
+  res.status(500).json({ message: '500 Error', code: 500 }).end()
+})
+
+router.post('/api/get400Error', (_req: Request, res: Response) => {
+  res.status(400).json({ message: '400 Error', code: 400 }).end()
+})
+
 router.post('/api/:key', proxy)
 
 router.get('/health-check', [

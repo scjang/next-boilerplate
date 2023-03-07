@@ -16,6 +16,7 @@ type CombineRequest = Combine<BaseReq, Request>
 
 const callApi = async (options: AxiosRequestConfig) => {
   try {
+    console.log(11)
     const { data } = await axios(options)
 
     return data.data || data
@@ -70,6 +71,8 @@ export const proxy = async (req: Request, res: Response, next: NextFunction) => 
 
     // todo: have to modify this condition to fit your project
     if (options.url.includes('/auth/admin')) setAccessTokenIntoCookie(res, data.data.accessToken)
+
+    console.log(data)
 
     res.status(status).json(data.data || data)
   } catch (error: AxiosError | unknown) {

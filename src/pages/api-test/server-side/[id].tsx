@@ -22,7 +22,9 @@ const serverSide = () => {
 export const getServerSideProps = async ({ query: { id } }: NextPageContext) => {
   const queryClient = new QueryClient()
 
-  await queryClient.prefetchQuery(['product', id], () => getProduct({ id: Number(id) || 1 }))
+  await queryClient.prefetchQuery(['product', Number(id)], () =>
+    getProduct({ id: Number(id) || 1 })
+  )
 
   return { props: { dehydratedState: dehydrate(queryClient) } }
 }

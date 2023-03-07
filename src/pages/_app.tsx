@@ -1,19 +1,26 @@
-import { Hydrate, QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import {
+  Hydrate,
+  QueryClient,
+  QueryClientProvider,
+  // QueryErrorResetBoundary,
+} from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
-import { NextPageContext, NextComponentType } from 'next'
+// import { NextPageContext, NextComponentType } from 'next'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
-import React from 'react'
+import React, { Suspense } from 'react'
+import { ErrorBoundary } from 'react-error-boundary'
 import { ThemeProvider } from 'theme-ui'
 
+import ErrorFallback from '~components/ErrorFallback'
 import MainTemplate from '~components/Template/Main'
 import Global from '~theme/global'
 import theme from '~theme/theme'
 
-interface ForGetInitialProps {
-  Component: NextComponentType
-  ctx: NextPageContext
-}
+// interface ForGetInitialProps {
+//   Component: NextComponentType
+//   ctx: NextPageContext
+// }
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -23,6 +30,8 @@ const queryClient = new QueryClient({
       staleTime: Infinity,
       refetchOnMount: false,
       refetchOnWindowFocus: false,
+      // suspense: true,
+      useErrorBoundary: true,
     },
   },
 })
@@ -40,9 +49,16 @@ const RootApp = ({ Component, pageProps }: AppProps) => {
 
           <ThemeProvider theme={theme}>
             <Global />
-            <MainTemplate>
-              <Component {...pageProps.props} />
-            </MainTemplate>
+
+            <ErrorBoundary FallbackComponent={ErrorFallback}>
+              <Suspense
+                fallback={<div>🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨Loading 🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨</div>}
+              >
+                <MainTemplate>
+                  <Component {...pageProps.props} />
+                </MainTemplate>
+              </Suspense>
+            </ErrorBoundary>
           </ThemeProvider>
         </Hydrate>
       </QueryClientProvider>
@@ -50,12 +66,12 @@ const RootApp = ({ Component, pageProps }: AppProps) => {
   )
 }
 
-RootApp.getInitialProps = async ({ Component, ctx }: ForGetInitialProps) => {
-  let pageProps = {}
-
-  if (Component.getInitialProps) pageProps = await Component.getInitialProps({ ...ctx })
-
-  return { pageProps }
-}
+// RootApp.getInitialProps = async ({ Component, ctx }: ForGetInitialProps) => {
+//   let pageProps = {}
+//
+//   if (Component.getInitialProps) pageProps = await Component.getInitialProps({ ...ctx })
+//
+//   return { pageProps }
+// }
 
 export default RootApp

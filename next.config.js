@@ -9,12 +9,12 @@ const isDev = process.env.NODE_ENV === 'development'
 const isStatus = process.env.IS_STATUS
 const transpileModules = []
 
-/** @type {import('next').NextConfig} */
+// /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  experimental: {
-    appDir: true,
-  },
+  // experimental: {
+  //   appDir: true,
+  // },
   env: {},
   publicRuntimeConfig: {
     isProd,

@@ -10,7 +10,7 @@ type ProductProps = {
   id: number
 }
 
-export const getProduct = (data: ProductProps) => api({ key: 'getProduct', data })
+export const getProduct = async (data: ProductProps) => api({ key: 'getProduct', data })
 
 export const useGetProduct = (data: ProductProps) => {
   const { id } = data

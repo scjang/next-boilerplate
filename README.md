@@ -5,6 +5,7 @@ This scaffolding was made in TypeScript, Next js, Express js with React.
 ## How to use?
 
 ```bash
+# if you use next js 13 experimental, you need to use node 16.8.0
 node -v
 v14.15.0
 

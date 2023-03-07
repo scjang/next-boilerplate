@@ -1,10 +1,17 @@
 export type MapKey = keyof typeof urlMap
 
 const apiServer = process.env.API_SERVER
-// const sinsaServer = process.env.SINSA_SERVER
-// const seokchonServer = process.env.SEOKCHON_SERVER
+const errorApiServer = process.env.ERROR_API_SERVER
 
 const urlMap = {
+  get400Error: {
+    url: `${errorApiServer}/error/400`,
+    method: 'GET',
+  },
+  get500Error: {
+    url: `${errorApiServer}/error/500`,
+    method: 'GET',
+  },
   getProducts: {
     url: `${apiServer}/products`,
     method: 'GET',
