@@ -2,19 +2,14 @@
 
 import React from 'react'
 
-import { useGetProductItem } from '~hooks/feature/product/api/useGetProduct'
+import ProductName from '~components/Atoms/ProductName'
 
 const ClientSide = ({ params: { id } }: { params: { id: number } }) => {
-  const { data } = useGetProductItem(id)
-
-  const { attributes } = data ?? {}
-
-  const { name } = attributes ?? {}
-
   return (
     <div>
       <h1>Client Side</h1>
-      <div>{name}</div>
+
+      <ProductName id={id} />
     </div>
   )
 }
