@@ -18,7 +18,9 @@ class Api {
       timeout: 15000,
     })
 
-    /* if need interceptor? write here! */
+    this.axios.interceptors.response.use((response) => {
+      return response.data || response
+    })
   }
 }
 

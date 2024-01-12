@@ -5,9 +5,12 @@ export async function GET(_request: Request, { params }: { params: { id: string 
 
   const { id } = params
 
-  return new Response(JSON.stringify({ id, name: 'Outer', price: 20000, like: 58 }), {
-    headers,
-    status: 200,
-    statusText: 'Success',
-  })
+  return new Response(
+    JSON.stringify({ id, attributes: { name: 'Outer', price: 20000, like: 58 } }),
+    {
+      headers,
+      status: 200,
+      statusText: 'Success',
+    }
+  )
 }

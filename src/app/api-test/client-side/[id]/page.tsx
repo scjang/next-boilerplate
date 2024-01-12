@@ -2,12 +2,14 @@
 
 import React from 'react'
 
-import { useGetProductSelector } from '~hooks/feature/product/api/useGetProduct'
+import { useGetProductItem } from '~hooks/feature/product/api/useGetProduct'
 
 const ClientSide = ({ params: { id } }: { params: { id: number } }) => {
-  const { attributes } = useGetProductSelector({ id: Number(id) || 1 })
+  const { data } = useGetProductItem(id)
 
-  const { name } = attributes ?? { name: '' }
+  const { attributes } = data ?? {}
+
+  const { name } = attributes ?? {}
 
   return (
     <div>

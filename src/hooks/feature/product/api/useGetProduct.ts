@@ -1,10 +1,11 @@
 import { useQuery } from '@tanstack/react-query'
 import { createSelector } from 'reselect'
 
-import { ResponseError } from '../../../../@types'
-import { ProductItem } from '../../../../@types/product'
-
 import { api } from '~services/api'
+import ProductApi from '~services/api/ProductApi'
+import { ResponseError } from '~types/index'
+import { ProductItem } from '~types/product'
+import peelOffAxios from '~utils/peelOffAxios'
 
 type ProductProps = {
   id: number
@@ -30,4 +31,11 @@ export const useGetProductSelector = (data: ProductProps) => {
   const { data: response } = useGetProduct(data)
 
   return selectProduct(response)
+}
+
+export const getProductItem = async (id: number) =>
+  peelOffAxios(() => ProductApi.getProductItem(id))
+
+export const useGetProductItem = (id: number) => {
+  return useQuery(['product', id], () => getProductItem(id))
 }
