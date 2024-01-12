@@ -26,10 +26,8 @@ const selectProduct = createSelector(
   })
 )
 
-const useGetProductSelector = (data: ProductProps) => {
+export const useGetProductSelector = (data: ProductProps) => {
   const { data: response } = useGetProduct(data)
 
   return selectProduct(response)
 }
-
-export default useGetProductSelector

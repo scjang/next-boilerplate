@@ -2,7 +2,7 @@
 
 import React from 'react'
 
-import useGetProductSelector from '~hooks/feature/product/api/useGetProduct'
+import { useGetProductSelector } from '~hooks/feature/product/api/useGetProduct'
 
 const ClientSide = ({ params: { id } }: { params: { id: number } }) => {
   const { attributes } = useGetProductSelector({ id: Number(id) || 1 })

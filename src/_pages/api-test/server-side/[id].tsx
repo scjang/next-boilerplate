@@ -3,7 +3,7 @@ import { NextPageContext } from 'next'
 import { useRouter } from 'next/router'
 import React from 'react'
 
-import useGetProductSelector, { getProduct } from '~hooks/feature/product/api/useGetProduct'
+import { useGetProductSelector, getProduct } from '~hooks/feature/product/api/useGetProduct'
 
 const serverSide = () => {
   const { query: id } = useRouter()

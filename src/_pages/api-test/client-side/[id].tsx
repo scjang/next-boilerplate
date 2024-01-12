@@ -2,7 +2,7 @@ import { useRouter } from 'next/router'
 import React from 'react'
 
 // import { useGet500Error } from '~hooks/feature/error/api/useErrorTrigger'
-import useGetProductSelector from '~hooks/feature/product/api/useGetProduct'
+import { useGetProductSelector } from '~hooks/feature/product/api/useGetProduct'
 
 const clientSide = () => {
   const {
