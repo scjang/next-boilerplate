@@ -15,6 +15,8 @@ const Providers = ({ children }: { children: ReactNode }) => {
             staleTime: Infinity,
             refetchOnMount: false,
             refetchOnWindowFocus: false,
+            suspense: true,
+            useErrorBoundary: true,
           },
         },
       })

@@ -1,7 +1,9 @@
 'use client'
 
+import { useSearchParams } from 'next/navigation'
 import React from 'react'
 
+import { useErrorTrigger } from '~hooks/feature/error/api/useErrorTrigger'
 import { useGetProductItem } from '~hooks/feature/product/api/useGetProduct'
 
 interface ProductNameProps {
@@ -14,6 +16,12 @@ const ProductName = ({ id }: ProductNameProps) => {
   const { attributes } = data ?? {}
 
   const { name } = attributes ?? {}
+
+  const { get } = useSearchParams()
+
+  console.log(get('httpStatusCode'))
+
+  useErrorTrigger(Number(get('httpStatusCode')))
 
   return <div>{name}</div>
 }
