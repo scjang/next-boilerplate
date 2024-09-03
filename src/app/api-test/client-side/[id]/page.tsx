@@ -1,10 +1,9 @@
 'use client'
 
-import React from 'react'
-import { ErrorBoundary } from 'react-error-boundary'
+import React, { Suspense } from 'react'
+import { Box } from 'theme-ui'
 
 import ProductName from '~components/Atoms/ProductName'
-import ErrorFallback from '~components/ErrorFallback'
 
 interface ClientSideProps {
   params: {
@@ -17,9 +16,9 @@ const ClientSide = ({ params: { id } }: ClientSideProps) => {
     <div>
       <h1>Client Side</h1>
 
-      <ErrorBoundary FallbackComponent={ErrorFallback}>
+      <Suspense fallback={<Box>Loading...</Box>}>
         <ProductName id={id} />
-      </ErrorBoundary>
+      </Suspense>
     </div>
   )
 }

@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query'
+import { useQuery, UseQueryOptions } from '@tanstack/react-query'
 import { createSelector } from 'reselect'
 
 import { api } from '~services/api'
@@ -36,6 +36,7 @@ export const useGetProductSelector = (data: ProductProps) => {
 export const getProductItem = async (id: number) =>
   peelOffAxios(() => ProductApi.getProductItem(id))
 
-export const useGetProductItem = (id: number) => {
-  return useQuery(['product', id], () => getProductItem(id))
-}
+export const useGetProductItem = (id: number, options?: UseQueryOptions<ProductItem>) =>
+  useQuery<ProductItem>(['product', id], () => getProductItem(id), {
+    ...options,
+  })

@@ -4,7 +4,7 @@ import { FallbackProps } from 'react-error-boundary'
 const ErrorFallback = ({ error }: FallbackProps) => {
   return (
     <div role={'alert'}>
-      🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨Error 🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨
+      🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨 Error 🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨
       <pre style={{ color: 'red' }}>{error.message}</pre>
     </div>
   )

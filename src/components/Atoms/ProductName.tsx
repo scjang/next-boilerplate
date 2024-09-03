@@ -3,7 +3,7 @@
 import { useSearchParams } from 'next/navigation'
 import React from 'react'
 
-import { useErrorTrigger } from '~hooks/feature/error/api/useErrorTrigger'
+// import { useErrorTrigger } from '~hooks/feature/error/api/useErrorTrigger'
 import { useGetProductItem } from '~hooks/feature/product/api/useGetProduct'
 
 interface ProductNameProps {
@@ -11,7 +11,7 @@ interface ProductNameProps {
 }
 
 const ProductName = ({ id }: ProductNameProps) => {
-  const { data } = useGetProductItem(id)
+  const { data } = useGetProductItem(id, { enabled: !!id })
 
   const { attributes } = data ?? {}
 
@@ -21,7 +21,7 @@ const ProductName = ({ id }: ProductNameProps) => {
 
   console.log(get('httpStatusCode'))
 
-  useErrorTrigger(Number(get('httpStatusCode')))
+  // useErrorTrigger(Number(get('httpStatusCode')))
 
   return <div>{name}</div>
 }

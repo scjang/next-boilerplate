@@ -1,16 +1,16 @@
-import React, { Suspense } from 'react'
+import React from 'react'
 
 import Providers from './Provider'
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang={'ko'}>
-      <head />
+      <head>
+        <title>Let&#39;s play</title>
+      </head>
 
       <body>
-        <Providers>
-          <Suspense fallback={<div>....Loading....</div>}>{children}</Suspense>
-        </Providers>
+        <Providers>{children}</Providers>
       </body>
     </html>
   )

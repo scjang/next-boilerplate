@@ -1,5 +1,4 @@
 import BaseApi from '~services/api/BaseApi'
-import { ProductItem } from '~types/product'
 
 class ProductApi extends BaseApi {
   constructor(url?: string) {
@@ -7,7 +6,7 @@ class ProductApi extends BaseApi {
   }
 
   getProductItem = (id: number) => {
-    return this.axios.get<ProductItem>(`/api/products/${id}`)
+    return this.axios.get(`/api/products/${id}`)
   }
 }
 

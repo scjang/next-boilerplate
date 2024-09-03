@@ -2,7 +2,13 @@
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
-import React, { ReactNode, useState } from 'react'
+import React, { ReactNode, Suspense, useState } from 'react'
+import { ErrorBoundary } from 'react-error-boundary'
+import { ThemeProvider } from 'theme-ui'
+
+import ErrorFallback from '~components/ErrorFallback'
+import Global from '~theme/global'
+import theme from '~theme/theme'
 
 const Providers = ({ children }: { children: ReactNode }) => {
   const [queryClient] = useState(
@@ -24,7 +30,14 @@ const Providers = ({ children }: { children: ReactNode }) => {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {children}
+      <ThemeProvider theme={theme}>
+        <Global />
+
+        <ErrorBoundary FallbackComponent={ErrorFallback}>
+          <Suspense fallback={<div>....Loading....</div>}>{children}</Suspense>
+        </ErrorBoundary>
+      </ThemeProvider>
+
       <ReactQueryDevtools initialIsOpen />
     </QueryClientProvider>
   )
