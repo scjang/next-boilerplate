@@ -6,12 +6,14 @@ import { Box } from 'theme-ui'
 import ProductName from '~components/Atoms/ProductName'
 
 interface ClientSideProps {
-  params: {
+  params: Promise<{
     id: number
-  }
+  }>
 }
 
-const ClientSide = ({ params: { id } }: ClientSideProps) => {
+const ClientSide = async ({ params }: ClientSideProps) => {
+  const { id } = await params
+
   return (
     <div>
       <h1>Client Side</h1>
